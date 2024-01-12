@@ -66,6 +66,11 @@
   transition: all 600ms;
 }
 
+.tasks li span {
+  display: flex;
+  align-items: center;
+}
+
 .tasks li:hover {
   background: var(--color_51cade);
   border-radius: 5px;

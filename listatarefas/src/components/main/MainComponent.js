@@ -11,11 +11,19 @@ import './MainComponent.css';
 export default class Main extends Component {
   state = {
     newTask: '',
-    tasks: [
-      'Fazer café',
-      'Beber água',
-      'Estudar React',
-    ],
+    tasks: [],
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { tasks } = this.state;
+    let { newTask } = this.state;
+    newTask = newTask.trim();
+    if (tasks.indexOf(newTask) !== -1) return;
+    const newTasks = [...tasks];
+    this.setState({
+      tasks: [...newTasks, newTask],
+    });
   };
 
   handleChange = (event) => {
@@ -31,7 +39,11 @@ export default class Main extends Component {
       <div className="main">
         <h1>Lista de tarefas</h1>
 
-        <form className="form" action="#">
+        <form
+          onSubmit={this.handleSubmit}
+          className="form"
+          action="#"
+        >
           <input
             onChange={this.handleChange}
             type="text"
@@ -48,10 +60,10 @@ export default class Main extends Component {
             tasks.map((task) => (
               <li key={task}>
                 {task}
-                <div>
+                <span>
                   <FaEdit className="edit" />
                   <FaWindowClose className="delete" />
-                </div>
+                </span>
               </li>
             ))
           }
