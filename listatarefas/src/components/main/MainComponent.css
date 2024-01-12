@@ -1,0 +1,18 @@
+:root {
+  --color_fff: #fff;
+  --color_rgba_0_0_0_0dot1: rgba(0, 0, 0, 0.1);
+}
+
+.main {
+  background-color: var(--color_fff);
+  padding: 30px;
+  margin: 50px auto;
+  max-width: 500px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--color_rgba_0_0_0_0dot1);
+}
+
+.main h1 {
+  font-size: 20px;
+  text-align: center;
+}
