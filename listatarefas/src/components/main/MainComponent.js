@@ -20,7 +20,22 @@ export default class Main extends Component {
     const { tasks, indice } = this.state;
     let { newTask } = this.state;
     newTask = newTask.trim();
-    if (tasks.indexOf(newTask) !== -1) return;
+
+    // if (tasks.indexOf(newTask) !== -1 || newTask === '') return;
+
+    if (tasks.indexOf(newTask) !== -1 || newTask === '') {
+      if (tasks.indexOf(newTask) !== -1) {
+        alert('Tarefa já adicionada');
+        this.setState({ newTask: '' });
+        return;
+      }
+
+      if (newTask === '') {
+        alert('Campo vazio');
+        return;
+      }
+    }
+
     const newTasks = [...tasks];
 
     if (indice === -1) {
@@ -77,8 +92,9 @@ export default class Main extends Component {
             type="text"
             id="inputTask"
             value={newTask}
+            placeholder="Digite a tarefa"
           />
-          <button type="submit">
+          <button type="submit" title="Adicionar tarefa">
             <FaPlus />
           </button>
         </form>
