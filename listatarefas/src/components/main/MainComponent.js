@@ -12,18 +12,29 @@ export default class Main extends Component {
   state = {
     newTask: '',
     tasks: [],
+    indice: -1,
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { tasks } = this.state;
+    const { tasks, indice } = this.state;
     let { newTask } = this.state;
     newTask = newTask.trim();
     if (tasks.indexOf(newTask) !== -1) return;
     const newTasks = [...tasks];
-    this.setState({
-      tasks: [...newTasks, newTask],
-    });
+
+    if (indice === -1) {
+      this.setState({
+        tasks: [...newTasks, newTask],
+        newTask: '',
+      });
+    } else {
+      newTasks[indice] = newTask;
+      this.setState({
+        tasks: [...newTasks],
+        indice: -1,
+      });
+    }
   };
 
   handleChange = (event) => {
@@ -33,7 +44,11 @@ export default class Main extends Component {
   };
 
   handleEdit = (event, indice) => {
-    // console.log('edit', indice);
+    const { tasks } = this.state;
+    this.setState({
+      indice,
+      newTask: tasks[indice],
+    });
   };
 
   handleDelete = (event, indice) => {
