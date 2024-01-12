@@ -1,5 +1,8 @@
 :root {
   --color_fff: #fff;
+  --color_ccc: #ccc;
+  --color_f04c64: #f04c64;
+  --color_f56c80: #f56c80;
   --color_rgba_0_0_0_0dot1: rgba(0, 0, 0, 0.1);
 }
 
@@ -15,4 +18,35 @@
 .main h1 {
   font-size: 20px;
   text-align: center;
+}
+
+.form {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form input[type="text"] {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 20px;
+  border: 1px solid var(--color_ccc);
+  min-width: 80%;
+}
+
+.form button[type="submit"] {
+  border: none;
+  height: 40px;
+  width: 40px;
+  background-color: var(--color_f04c64);
+  color: var(--color_fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .4s;
+}
+
+.form button[type="submit"]:hover {
+  background-color: var(--color_f56c80);
 }

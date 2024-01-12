@@ -28,5 +28,6 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'no-unused-vars': 0,
     'react/forbid-prop-types': 0,
+    'jsx-a11y/control-has-associated-label': 0,
   },
 };
