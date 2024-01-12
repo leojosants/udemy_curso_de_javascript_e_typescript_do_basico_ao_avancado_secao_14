@@ -15,13 +15,23 @@ export default class Main extends Component {
     indice: -1,
   };
 
+  componentDidMount() {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    if (!tasks) return;
+    this.setState({ tasks });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { tasks } = this.state;
+    if (tasks === prevState.tasks) return;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const { tasks, indice } = this.state;
     let { newTask } = this.state;
     newTask = newTask.trim();
-
-    // if (tasks.indexOf(newTask) !== -1 || newTask === '') return;
 
     if (tasks.indexOf(newTask) !== -1 || newTask === '') {
       if (tasks.indexOf(newTask) !== -1) {
@@ -48,6 +58,7 @@ export default class Main extends Component {
       this.setState({
         tasks: [...newTasks],
         indice: -1,
+        newTask: '',
       });
     }
   };
@@ -108,10 +119,12 @@ export default class Main extends Component {
                   <FaEdit
                     onClick={(event) => this.handleEdit(event, indice)}
                     className="edit"
+                    title="Editar tarefa"
                   />
                   <FaWindowClose
                     onClick={(event) => this.handleDelete(event, indice)}
                     className="delete"
+                    title="Deletar tarefa"
                   />
                 </span>
               </li>
