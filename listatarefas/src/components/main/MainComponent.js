@@ -3,11 +3,19 @@ import React, { Component } from 'react';
 // form
 import { FaPlus } from 'react-icons/fa';
 
+// tasks
+import { FaEdit, FaWindowClose } from 'react-icons/fa';
+
 import './MainComponent.css';
 
 export default class Main extends Component {
   state = {
     newTask: '',
+    tasks: [
+      'Fazer café',
+      'Beber água',
+      'Estudar React',
+    ],
   };
 
   handleChange = (event) => {
@@ -17,11 +25,12 @@ export default class Main extends Component {
   };
 
   render() {
-    const { newTask } = this.state;
+    const { newTask, tasks } = this.state;
 
     return (
       <div className="main">
         <h1>Lista de tarefas</h1>
+
         <form className="form" action="#">
           <input
             onChange={this.handleChange}
@@ -33,6 +42,20 @@ export default class Main extends Component {
             <FaPlus />
           </button>
         </form>
+
+        <ul className="tasks">
+          {
+            tasks.map((task) => (
+              <li key={task}>
+                {task}
+                <div>
+                  <FaEdit className="edit" />
+                  <FaWindowClose className="delete" />
+                </div>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     );
   }
