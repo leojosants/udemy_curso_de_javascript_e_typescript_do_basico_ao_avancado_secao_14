@@ -1,0 +1,48 @@
+:root {
+  --color_51cade: #51cade;
+  --color_f04cb4: #f04cb4;
+  --color_000000: #000000;
+}
+
+.tasks {
+  margin-top: 30px;
+}
+
+.tasks li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  transition: all 600ms;
+}
+
+.tasks li span {
+  display: flex;
+  align-items: center;
+}
+
+.tasks li:hover {
+  background: var(--color_51cade);
+  border-radius: 5px;
+}
+
+.tasks .edit {
+  margin-right: 15px;
+  color: var(--color_51cade);
+}
+
+.tasks .delete {
+  margin-right: 15px;
+  color: var(--color_f04cb4);
+}
+
+.tasks li:hover .edit,
+.tasks li:hover .delete {
+  color: var(--color_000000);
+}
+
+.tasks li .edit,
+.tasks li .delete {
+  cursor: pointer;
+  transition: all 600ms;
+}

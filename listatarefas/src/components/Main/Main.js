@@ -1,12 +1,8 @@
+/* eslint-disable no-alert */
 import React, { Component } from 'react';
-
-// form
-import { FaPlus } from 'react-icons/fa';
-
-// tasks
-import { FaEdit, FaWindowClose } from 'react-icons/fa';
-
-import './MainComponent.css';
+import Form from '../Form';
+import Tasks from '../Tasks';
+import './Main.css';
 
 export default class Main extends Component {
   state = {
@@ -41,7 +37,7 @@ export default class Main extends Component {
       }
 
       if (newTask === '') {
-        alert('Campo vazio');
+        alert('Campo não pode ser vazio');
         return;
       }
     }
@@ -53,6 +49,7 @@ export default class Main extends Component {
         tasks: [...newTasks, newTask],
         newTask: '',
       });
+      alert('Tarefa criada com sucesso!');
     } else {
       newTasks[indice] = newTask;
       this.setState({
@@ -60,6 +57,7 @@ export default class Main extends Component {
         indice: -1,
         newTask: '',
       });
+      alert('Tarefa editada com sucesso!');
     }
   };
 
@@ -81,9 +79,8 @@ export default class Main extends Component {
     const { tasks } = this.state;
     const newTasks = [...tasks];
     newTasks.splice(indice, 1);
-    this.setState({
-      tasks: [...newTasks],
-    });
+    this.setState({ tasks: [...newTasks] });
+    alert('Tarefa será deletada!');
   };
 
   render() {
@@ -93,44 +90,17 @@ export default class Main extends Component {
       <div className="main">
         <h1>Lista de tarefas</h1>
 
-        <form
-          onSubmit={this.handleSubmit}
-          className="form"
-          action="#"
-        >
-          <input
-            onChange={this.handleChange}
-            type="text"
-            id="inputTask"
-            value={newTask}
-            placeholder="Digite a tarefa"
-          />
-          <button type="submit" title="Adicionar tarefa">
-            <FaPlus />
-          </button>
-        </form>
+        <Form
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          newTask={newTask}
+        />
 
-        <ul className="tasks">
-          {
-            tasks.map((task, indice) => (
-              <li key={task}>
-                {task}
-                <span>
-                  <FaEdit
-                    onClick={(event) => this.handleEdit(event, indice)}
-                    className="edit"
-                    title="Editar tarefa"
-                  />
-                  <FaWindowClose
-                    onClick={(event) => this.handleDelete(event, indice)}
-                    className="delete"
-                    title="Deletar tarefa"
-                  />
-                </span>
-              </li>
-            ))
-          }
-        </ul>
+        <Tasks
+          tasks={tasks}
+          handleEdit={this.handleEdit}
+          handleDelete={this.handleDelete}
+        />
       </div>
     );
   }

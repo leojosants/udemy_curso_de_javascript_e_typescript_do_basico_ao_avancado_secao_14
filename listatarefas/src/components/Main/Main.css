@@ -1,0 +1,24 @@
+:root {
+  --color_ffffff: #ffffff;
+  --color_cccccc: #cccccc;
+  --color_f04c64: #f04c64;
+  --color_f56c80: #f56c80;
+  --color_51cade: #51cade;
+  --color_f04cb4: #f04cb4;
+  --color_000000: #000000;
+  --color_rgba_0_0_0_0dot1: rgba(0, 0, 0, 0.1);
+}
+
+.main {
+  background-color: var(--color_ffffff);
+  padding: 30px;
+  margin: 50px auto;
+  max-width: 500px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--color_rgba_0_0_0_0dot1);
+}
+
+.main h1 {
+  font-size: 20px;
+  text-align: center;
+}
